@@ -11,7 +11,7 @@ A notes app built using:
 
 ### Live Preview
 
-[Vue Notes App](https://moustafashaaban.github.io/Vue_Notes_App/)
+[Vue Notes App](https://moustafa-shaaban.github.io/Vue_Notes_App/)
 
 
 ###  Project Goals
