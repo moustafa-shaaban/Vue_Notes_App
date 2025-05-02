@@ -1,10 +1,9 @@
-
 <script setup>
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Dialog, Notify } from 'quasar';
 
-import { useNotesStore } from '../stores/notes';
+import { useNotesStore } from '@/stores/notes';
 
 const notesStore = useNotesStore();
 const route = useRoute();

@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { Dialog, date, Notify } from "quasar";
 import Multiselect from "vue-multiselect";
 
-import { useNotesStore } from "../stores/notes";
+import { useNotesStore } from "@/stores/notes";
 
 
 const notesStore = useNotesStore();
@@ -134,7 +134,7 @@ function confirm(id) {
                     <div class="col">
                         <div class="text-h6">{{ note.title }}</div>
                         <div class="text-subtitle2">
-                            {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
+                            {{ date.formatDate(note.createdAt, 'DD MMMM YYYY') }}
                             <q-badge clickable rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">
                                 <q-breadcrumbs-el :label="tag.name"
                                     :to="{ name: 'tag-detail', params: { id: tag.id } }" />

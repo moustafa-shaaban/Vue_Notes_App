@@ -1,6 +1,6 @@
 <script setup>
 import { Dialog, Notify } from 'quasar';
-import { useNotesStore } from '../stores/notes';
+import { useNotesStore } from '@/stores/notes';
 import { useRouter } from 'vue-router';
 
 const notesStore = useNotesStore();
@@ -59,7 +59,7 @@ function confirm(id) {
                     <q-item clickable :to="{ name: 'notes-by-tag', params: { id: tag.id } }">
                       <q-item-section>Notes With This Tag</q-item-section>
                     </q-item>
-                    <q-item clickable :to="{ name: 'tag-detail', params: { id: tag.id } }">
+                    <q-item clickable :to="{ name: 'tag-details', params: { id: tag.id } }">
                       <q-item-section>Details</q-item-section>
                     </q-item>
                     <q-item clickable>
@@ -75,7 +75,7 @@ function confirm(id) {
         <q-separator />
 
         <q-card-actions>
-          <q-btn color="info" flat :to="{ name: 'tag-detail', params: { id: tag.id } }">Details</q-btn>
+          <q-btn color="info" flat :to="{ name: 'tag-details', params: { id: tag.id } }">Details</q-btn>
           <q-btn color="info" flat :to="{ name: 'notes-by-tag', params: { id: tag.id } }">Notes With This Tag</q-btn>
         </q-card-actions>
       </q-card>
@@ -85,7 +85,7 @@ function confirm(id) {
     </div>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn fab icon="add" color="primary" :to="{ name: 'add-tag' }">
+      <q-btn fab icon="add" color="primary" :to="{ name: 'create-tag' }">
       </q-btn>
     </q-page-sticky>
   </q-page>

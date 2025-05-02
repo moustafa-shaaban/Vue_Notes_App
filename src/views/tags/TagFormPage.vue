@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { nanoid } from 'nanoid';
 import { Notify } from 'quasar';
 
-import { useNotesStore } from '../stores/notes';
+import { useNotesStore } from '@/stores/notes';
 
 const notesStore = useNotesStore();
 const router = useRouter();
@@ -74,18 +74,4 @@ function handleSubmit() {
 .my-card
     width: 100%
     max-width: 400px
-
-.q-dark div,
-.body--dark div
-    .multiselect__tags
-        background-color: rgb(24, 26, 27)
-        color: white
-    .multiselect__input
-        background-color: rgb(24, 26, 27)
-        color: white
-    .multiselect__content-wrapper
-        background-color: rgb(24, 26, 27)
-        color: white
-    .multiselect__placeholder
-        color: white
 </style>

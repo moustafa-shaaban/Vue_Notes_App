@@ -5,6 +5,8 @@ import { useNotesStore } from '@/stores/notes';
 
 const notesStore = useNotesStore();
 
+const favoriteNotes = computed(() => notesStore.notes.filter(note => note.favorite))
+
 const searchResult = computed(() => {
   return notesStore.notes.filter((note) => {
     return (
@@ -50,8 +52,8 @@ function confirm(id) {
 
     <q-separator />
 
-    <div v-if="notesStore.notes.length > 0">
-      <q-card v-for="note in searchResult" :key="note.id" class="note-card q-mt-md" flat bordered>
+    <div v-if="favoriteNotes.length > 0">
+      <q-card v-for="note in favoriteNotes" :key="note.id" class="note-card q-mt-md" flat bordered>
 
         <q-card-section>
           <div class="row items-center no-wrap">

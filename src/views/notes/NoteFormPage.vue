@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { Notify } from 'quasar';
 import Multiselect from 'vue-multiselect'
 
-import { useNotesStore } from '../stores/notes';
+import { useNotesStore } from '@/stores/notes';
 
 const notesStore = useNotesStore();
 const router = useRouter();
@@ -24,7 +24,8 @@ function handleSubmit() {
       title: noteTitle.value,
       content: noteContent.value,
       tags: tags.value,
-      dateAdded: Date.now()
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     })
 
     // Clear form fields

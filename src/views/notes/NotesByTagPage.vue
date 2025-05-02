@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { date } from 'quasar';
 import { useRoute } from 'vue-router';
-import { useNotesStore } from '../stores/notes';
+import { useNotesStore } from '@/stores/notes';
 
 const route = useRoute();
 
@@ -14,9 +14,7 @@ const notesList =  notesStore.getNotesByTag(route.params.id)
 
 <template>
     <q-page class="flex flex-center column">
-
         <q-separator />
-
         <div v-if="notesList.length">
             <q-card v-for="note in notesList" :key="note.id" class="note-card q-mt-md" flat bordered>
 
@@ -25,7 +23,7 @@ const notesList =  notesStore.getNotesByTag(route.params.id)
                         <div class="col">
                             <div class="text-h6">{{ note.title }}</div>
                             <div class="text-subtitle2">
-                                {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
+                                {{ date.formatDate(note.createdAt, 'DD MMMM YYYY') }}
                                 <q-badge clickable rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">
                                     <q-breadcrumbs-el :label="tag.name"
                                         :to="{ name: 'tag-detail', params: { id: tag.id } }" />
@@ -67,7 +65,7 @@ const notesList =  notesStore.getNotesByTag(route.params.id)
         </div>
 
         <q-page-sticky position="bottom-right" :offset="[18, 18]">
-            <q-btn fab icon="add" color="primary" :to="{ name: 'add-note' }">
+            <q-btn fab icon="add" color="primary" :to="{ name: 'create-note' }">
             </q-btn>
         </q-page-sticky>
     </q-page>

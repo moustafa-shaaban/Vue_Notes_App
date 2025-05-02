@@ -1,12 +1,4 @@
 import { createRouter, createWebHistory, useRouter } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import NotFound from "../views/NotFound.vue";
-import NoteForm from "../components/NoteForm.vue";
-import NoteDetail from "../components/NoteDetail.vue";
-import NotesListByTag from "../components/NotesListByTag.vue";
-import TagForm from "../components/TagForm.vue";
-import TagList from "../components/TagList.vue";
-import TagDetail from "../components/TagDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,37 +6,47 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: () => import("@/views/notes/NotesListPage.vue"),
     },
     {
-      path: '/add-note',
-      name: 'add-note',
-      component: NoteForm,
+      path: "/favorite/notes",
+      name: "favorites",
+      component: () => import("@/views/notes/FavoriteNotesPage.vue"),
+    },
+    {
+      path: "/pinned/notes",
+      name: "pinned",
+      component: () => import("@/views/notes/PinnedNotesPage.vue"),
+    },
+    {
+      path: '/create-note',
+      name: 'create-note',
+      component: () => import("@/views/notes/NoteFormPage.vue"),
     },
     {
       path: '/note-detail/:id',
       name: 'note-detail',
-      component: NoteDetail,
+      component: () => import("@/views/notes/NoteDetailsPage.vue"),
     },
     {
       path: '/notes-by-tag/:id',
       name: 'notes-by-tag',
-      component: NotesListByTag,
+      component: () => import("@/views/notes/NotesByTagPage.vue"),
     },
     {
       path: '/tags',
       name: 'tags',
-      component: TagList,
+      component: () => import("@/views/tags/TagsListPage.vue"),
     },
     {
-      path: '/add-tag',
-      name: 'add-tag',
-      component: TagForm,
+      path: '/create-tag',
+      name: 'create-tag',
+      component: () => import("@/views/tags/TagFormPage.vue"),
     },
     {
-      path: '/tag-detail/:id',
-      name: 'tag-detail',
-      component: TagDetail,
+      path: '/tag-details/:id',
+      name: 'tag-details',
+      component: () => import("@/views/tags/TagDetailsPage.vue"),
     },
     {
       path: "/about",
@@ -52,12 +54,12 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
+      component: () => import("@/views/AboutView.vue"),
     },
     {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
-      component: NotFound,
+      component: () => import("@/views/NotFound.vue"),
     },
   ],
 });

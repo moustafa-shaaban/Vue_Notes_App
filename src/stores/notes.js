@@ -1,11 +1,18 @@
 import { ref, computed, readonly } from "vue";
 import { defineStore } from "pinia";
 import { useStorage } from "@vueuse/core";
+import { uid } from "quasar";
 
 export const useNotesStore = defineStore("notes", {
   state: () => ({
     notes: useStorage("notesStorage", []),
-    tags: useStorage("tagsStorage", []),
+    tags: useStorage("tagsStorage", [
+      {id: uid(), name: "Work"},
+      {id: uid(), name: "Personal"},
+      {id: uid(), name: "To-Do"},
+      {id: uid(), name: "Important"},
+      {id: uid(), name: "Projects"},
+    ]),
     searchQuery: "",
   }),
   getters: {
@@ -15,18 +22,11 @@ export const useNotesStore = defineStore("notes", {
     getTagById: (state) => {
       return (id) => state.tags.find((tag) => tag.id === id);
     },
-    // Source: https://stackoverflow.com/a/53028615
     getNotesByTag: (state) => {
       return (id) =>
         state.notes.filter((note) => {
           return note.tags.find((tag) => tag.id === id);
         });
-
-      // const note = this.notes.filter((note) => {
-      //     console.log(note.tags)
-      //     return note.tags.find((tag) => tag.id === id)
-      // })
-      // return note
     },
   },
   actions: {
@@ -51,6 +51,20 @@ export const useNotesStore = defineStore("notes", {
       this.notes = this.notes.filter((note) => {
         return note.id !== id;
       })
+    },
+
+    togglePin(id) {
+      const note = this.notes.find(n => n.id === id)
+      if (note) {
+        note.pinned = !note.pinned
+      }
+    },
+
+    toggleFavorite(id) {
+      const note = this.notes.find(n => n.id === id)
+      if (note) {
+        note.favorite = !note.favorite
+      }
     },
 
     addTag(tag) {
